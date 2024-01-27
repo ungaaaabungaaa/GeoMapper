@@ -314,3 +314,44 @@ document.addEventListener("DOMContentLoaded", function () {
         window.location.href = 'setting.html';
     });
 });
+
+
+// Function to show all stores
+function showAllStores() {
+    const listSection = document.querySelector('.List_section');
+    listSection.innerHTML = ''; // Clear previous content
+
+    stores.forEach((store, index) => {
+        const cardHTML = createCard(store, index, store.distance); // You may update the function as needed
+        listSection.innerHTML += cardHTML;
+    });
+
+    // Add event listeners to newly created elements (if needed)
+    addEventListenersToCards();
+}
+
+// Function to add event listeners to cards (you can customize this based on your requirements)
+function addEventListenersToCards() {
+    const copyIcons = document.querySelectorAll('.copy-icon');
+    copyIcons.forEach(icon => {
+        icon.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            copyAddress(index);
+        });
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Get the element with the ID 'setting_icon'
+    var settingIcon = document.getElementById('Setting_Icon');
+    // Add a click event listener to the setting icon
+    settingIcon.addEventListener('click', function () {
+        // Navigate to the 'setting.html' file
+        window.location.href = 'setting.html';
+    });
+
+    // Show all stores when setting.js is loaded
+    showAllStores();
+});
+
+
