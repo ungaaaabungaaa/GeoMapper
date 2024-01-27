@@ -51,7 +51,7 @@ function createCard(store, index) {
                 <h4>${store.address}</h4>
             </div>
             <div class="div3">
-                <img src="icon_Pack/trash.svg" class="copy-icon" data-index="${index}" onclick="deleteStore(${index})">
+                <img src="/icon_Pack/trash.svg" class="copy-icon" data-index="${index}" onclick="deleteStore(${index})">
             </div>
             <div class="div4">
             </div>
