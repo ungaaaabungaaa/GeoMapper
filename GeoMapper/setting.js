@@ -1,5 +1,3 @@
-// setting.js
-
 // Function to validate name (only one alphabet and spaces)
 function validateName(input) {
     return /^([a-zA-Z]{1}\s*)+$/.test(input);
@@ -14,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Display the stored data when the website is started
     displayStoredData();
 });
-
 
 function showNotification(message) {
     const snackbar = document.getElementById('snackbar');
@@ -40,38 +37,21 @@ function clearInputFieldsAndNotify() {
     showNotification("Successfully added!");
 }
 
+// Preload data if not present in local storage
+function preloadData() {
+    if (!localStorage.getItem('stores')) {
+        const preloadedData = [
+            { name: 'Store 1', address: 'Address 1', latitude: '12.345', longitude: '67.890' },
+            { name: 'Store 2', address: 'Address 2', latitude: '34.567', longitude: '89.012' },
+            // Add more predefined data as needed
+        ];
 
-function createCard(store, index) {
-    return `
-        <div class="card" id="card-${index}">
-            <div class="div1">
-                <h3>${store.name}</h3>
-            </div>
-            <div class="div2 flex_center">
-                <h4>${store.address}</h4>
-            </div>
-            <div class="div3">
-                <img src="Icon_Pack/trash.svg" class="copy-icon" data-index="${index}" onclick="deleteStore(${index})">
-            </div>
-            <div class="div4">
-            </div>
-        </div>
-    `;
+        localStorage.setItem('stores', JSON.stringify(preloadedData));
+    }
 }
 
-function deleteStore(index) {
-    // Get the stored data from local storage
-    const storedData = JSON.parse(localStorage.getItem('stores')) || [];
-
-    // Remove the store at the specified index
-    storedData.splice(index, 1);
-
-    // Update local storage with the modified data
-    localStorage.setItem('stores', JSON.stringify(storedData));
-
-    // Reload the page to update the displayed list
-    location.reload();
-}
+// Check if there is no data in local storage
+preloadData();
 
 // Add input event listeners to restrict input for specific fields
 document.getElementById('nameInput').addEventListener('input', function () {
@@ -124,7 +104,6 @@ document.getElementById('ADD').addEventListener('click', function () {
         return;
     }
 
-
     const storedData = JSON.parse(localStorage.getItem('stores')) || [];
     storedData.push({
         name: nameInput,
@@ -136,12 +115,9 @@ document.getElementById('ADD').addEventListener('click', function () {
 
     // Display the updated list
     displayStoredData();
-    // clear and toast the message
+    // Clear input fields and toast the message
     clearInputFieldsAndNotify();
-
-
 });
-
 
 document.addEventListener("DOMContentLoaded", function () {
     // Get the element with the ID 'setting_icon'
@@ -164,4 +140,36 @@ function displayStoredData() {
     storedData.forEach((store, index) => {
         listSection.innerHTML += createCard(store, index);
     });
+}
+
+function createCard(store, index) {
+    return `
+        <div class="card" id="card-${index}">
+            <div class="div1">
+                <h3>${store.name}</h3>
+            </div>
+            <div class="div2 flex_center">
+                <h4>${store.address}</h4>
+            </div>
+            <div class="div3">
+                <img src="Icon_Pack/trash.svg" class="copy-icon" data-index="${index}" onclick="deleteStore(${index})">
+            </div>
+            <div class="div4">
+            </div>
+        </div>
+    `;
+}
+
+function deleteStore(index) {
+    // Get the stored data from local storage
+    const storedData = JSON.parse(localStorage.getItem('stores')) || [];
+
+    // Remove the store at the specified index
+    storedData.splice(index, 1);
+
+    // Update local storage with the modified data
+    localStorage.setItem('stores', JSON.stringify(storedData));
+
+    // Reload the page to update the displayed list
+    location.reload();
 }
