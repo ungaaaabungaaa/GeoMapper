@@ -9,6 +9,8 @@ function validateCoordinates(input) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    // Preload data if not present in local storage
+    preloadData();
     // Display the stored data when the website is started
     displayStoredData();
 });
@@ -41,17 +43,14 @@ function clearInputFieldsAndNotify() {
 function preloadData() {
     if (!localStorage.getItem('stores')) {
         const preloadedData = [
-            { name: 'Store 1', address: 'Address 1', latitude: '12.345', longitude: '67.890' },
-            { name: 'Store 2', address: 'Address 2', latitude: '34.567', longitude: '89.012' },
-            // Add more predefined data as needed
+            new Outlets("Hoodi", "No. 39, Ground Floor, MSM Towers, Ayyappa Nagar to Hoodi Main Road, Bengaluru, Karnataka",77.7127928,13.0032265),
+            new Outlets("Jayanagar", "4th Block", "140, 6th C Main Road, 4th Block, Jayanagar, Bengaluru, Karnataka",77.5816819,12.9292656),
+            // Add the remaining outlets similarly
         ];
 
         localStorage.setItem('stores', JSON.stringify(preloadedData));
     }
 }
-
-// Check if there is no data in local storage
-preloadData();
 
 // Add input event listeners to restrict input for specific fields
 document.getElementById('nameInput').addEventListener('input', function () {
@@ -105,12 +104,7 @@ document.getElementById('ADD').addEventListener('click', function () {
     }
 
     const storedData = JSON.parse(localStorage.getItem('stores')) || [];
-    storedData.push({
-        name: nameInput,
-        address: addressInput,
-        longitude: longitudeInput,
-        latitude: latitudeInput
-    });
+    storedData.push(new Outlets(nameInput, addressInput, parseFloat(longitudeInput), parseFloat(latitudeInput)));
     localStorage.setItem('stores', JSON.stringify(storedData));
 
     // Display the updated list
