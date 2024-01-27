@@ -91,7 +91,7 @@ function createCard(store, index, distance = null) {
                 <h4>${store.address}</h4>
             </div>
             <div class="div3">
-                <img src="icon_Pack/copy-outline.svg" class="copy-icon" data-index="${index}">
+                <img src="/icon_Pack/copy-outline.svg" class="copy-icon" data-index="${index}">
             </div>
             <div class="div4">
                 <h4>${distance ? `Distance: ${distance.toFixed(2)} km` : 'Distance: Calculate Distance Here'}</h4>
