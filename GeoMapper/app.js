@@ -21,6 +21,7 @@ const storedData = JSON.parse(localStorage.getItem('stores')) || [];
 // Push the outlet objects into the 'stores' array
 stores.push(...storedData.map(data => new Outlets(data.name, data.address, data.longitude, data.latitude)));
 
+/*
 // Push the outlet objects into the 'stores' array
 stores.push(
     new Outlets("Hoodi", "No. 39, Ground Floor, MSM Towers, Ayyappa Nagar to Hoodi Main Road, Bengaluru, Karnataka",77.7127928,13.0032265),
@@ -79,6 +80,7 @@ stores.push(
     new Outlets("Al Fahidi", "89 Khalid Bin Al Waleed Rd - opp. WestZone - Al Fahidi - Dubai - United Arab Emirates",55.29553164023402,25.259768634255202),
      // Add other outlets here...
 ); 
+*/
 
 function createCard(store, index, distance = null) {
     return `
@@ -90,7 +92,7 @@ function createCard(store, index, distance = null) {
                 <h4>${store.address}</h4>
             </div>
             <div class="div3">
-                <img src="/icon_Pack/copy-outline.svg" class="copy-icon" data-index="${index}">
+                <img src="Icon_Pack/copy-outline.svg" class="copy-icon" data-index="${index}">
             </div>
             <div class="div4">
                 <h4>${distance ? `Distance: ${distance.toFixed(2)} km` : 'Distance: Calculate Distance Here'}</h4>
