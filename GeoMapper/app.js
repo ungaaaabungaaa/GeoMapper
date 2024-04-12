@@ -1,6 +1,7 @@
 
 // Constants
-const GOOGLE_MAPS_API_KEY = 'AIzaSyCfYd6qnguPKWut9p4I8PQbx8reuvFBD5Q';
+const GOOGLE_MAPS_API_KEY = '';
+// add your api key here
 
 // Define the Outlets class
 class Outlets {
