@@ -395,3 +395,8 @@ h4 {
     height: auto;
     margin-bottom: 1.5%;
 }
+
+#Setting_Icon
+{
+    display: none;
+}
